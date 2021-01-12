@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @post.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @post.active %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <% if @post.image.attached? %>
+    <%= image_tag @post.image, style: "width: 300px; display: block" %>
+  <% else %>
+    <p>no image available</p>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
