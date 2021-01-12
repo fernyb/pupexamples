@@ -1,24 +1,11 @@
-# README
+# Web App for Pup Examples
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+Start server:
 
-* Ruby version
+    bundle exec rails s
 
-* System dependencies
 
-* Configuration
+Open your browser and navigate to:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    http://localhost:3000/
