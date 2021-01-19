@@ -105,11 +105,9 @@
       <button id="setcookie">Set Cookie</button>
       <button id="clearcookie">Clear Cookie</button>
     </div>
-    <% if cookies[:pupCookie].present? %>
-      <div class="cookieResponse">
-        Cookie: pupCookie = <%= cookies[:pupCookie] %>
-      </div>
-    <% end %>
+    <div class="cookieResponse">
+      Cookie: pupCookie = <%= cookies[:pupCookie] %>
+    </div>
   </section>
 <script>
   $(document).ready(() => {
