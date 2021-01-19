@@ -10,4 +10,19 @@ class PublicController < ApplicationController
   def post_slow_response
     render json: { method: "POST", request: true }, status: 200
   end
+
+  def set_the_cookie
+    response.set_cookie(:pupCookie, {
+      value: 'CookieJar',
+      expires: 1.days.from_now,
+      path: '/',
+      httponly: true
+    })
+    redirect_to action: :slow_ajax
+  end
+
+  def clear_the_cookie
+    cookies.delete(:pupCookie)
+    redirect_to action: :slow_ajax
+  end
 end

@@ -59,6 +59,71 @@
   </section>
   <section name="bottom">
   </section>
+
+  <section name="geolocation">
+    <button id="getLocation">Get Current GeoLocation</button>
+    <div class="geolocation_results">
+    </div>
+  </section>
+  <script>
+    const showGeolocationResults = (results) => {
+      $("section .geolocation_results").html(results);
+    };
+
+    const showPosition = (position) => {
+      setTimeout(() => {
+        const html = `<div> Latitude: ${position.coords.latitude}</div>` +
+          `<div>Longitude: ${position.coords.longitude}</div>`;
+        showGeolocationResults(html);
+      }, 3000);
+    };
+
+    const getCurrentLocation = () => {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        showGeolocationResults("<div>Geolocation is not supported. "+
+              "Could not access geo location</div>");
+      }
+    };
+
+    $(document).ready(() => {
+      $("button#getLocation").click((e) => {
+          e.preventDefault();
+          showGeolocationResults("<div>Please wait, getting location...</div>");
+          getCurrentLocation();
+      });
+    });
+  </script>
+
+  <hr />
+  <section name="cookies">
+    <div>
+      <h2>Cookie Munster</h2>
+    </div>
+    <div>
+      <button id="setcookie">Set Cookie</button>
+      <button id="clearcookie">Clear Cookie</button>
+    </div>
+    <% if cookies[:pupCookie].present? %>
+      <div class="cookieResponse">
+        Cookie: pupCookie = <%= cookies[:pupCookie] %>
+      </div>
+    <% end %>
+  </section>
+<script>
+  $(document).ready(() => {
+      $("button#setcookie").click(e => {
+          e.preventDefault();
+          window.location.href = "/setcookie";
+      });
+      $("button#clearcookie").click(e => {
+          e.preventDefault();
+          window.location.href = "/clearthecookie";
+      });
+    });
+</script>
+
 </div>
 
 
