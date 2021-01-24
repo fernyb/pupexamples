@@ -37,6 +37,8 @@
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
 
 <div id="nest_root">
   <section name="top">
@@ -109,19 +111,92 @@
       Cookie: pupCookie = <%= cookies[:pupCookie] %>
     </div>
   </section>
-<script>
-  $(document).ready(() => {
+  <script>
+    $(document).ready(() => {
       $("button#setcookie").click(e => {
-          e.preventDefault();
-          window.location.href = "/setcookie";
+        e.preventDefault();
+        window.location.href = "/setcookie";
       });
       $("button#clearcookie").click(e => {
-          e.preventDefault();
-          window.location.href = "/clearthecookie";
+        e.preventDefault();
+        window.location.href = "/clearthecookie";
       });
     });
-</script>
+  </script>
 
+  <hr />
+
+  <section name="timezone">
+    <div>
+      <h2>Timezone</h2>
+    </div>
+    <div name="currentTimezone">
+    </div>
+  </section>
+  <style>
+    [name=currentTimezone] {
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    $(document).ready(() => {
+      setInterval(() => {
+        $("div[name=currentTimezone").text(new Date().toString());
+
+        let position = $("#makeMeDraggable").position();
+        $("#draggablePosition").text(`top: ${ Math.floor(position.top) }, left: ${ Math.floor(position.left) }`);
+      }, 0);
+    });
+  </script>
+
+  <hr />
+  <section name="rightClick">
+    <div>
+      <h2>Right Click</h2>
+    </div>
+    <div>
+      <div class="rightclicktext">Right Click Here</div>
+    </div>
+    <div name="rightclickResult"></div>
+  </section>
+  <script>
+    $(document).ready(() => {
+      $(document).bind("contextmenu", function(e) {
+        return !$(e.target).hasClass("rightclicktext");
+      });
+
+      $("section[name=rightClick] div:contains('Right Click Here') div").mousedown((e) => {
+        e.preventDefault();
+        if (e.button == 2) {
+          $("div[name=rightclickResult]").html("Right Click PASS");
+        } else {
+          $("div[name=rightclickResult]").html("Right Click FAIL");
+        }
+      });
+    });
+  </script>
+
+  <hr />
+  <section name="dragndrop">
+    <h2>Drag N Drop</h2>
+    <div>
+      <div id="makeMeDraggable"></div>
+    </div>
+    <div id="draggablePosition"></div>
+  </section>
+  <style>
+    #makeMeDraggable {
+      margin: 5px;
+      height: 50px;
+      width: 50px;
+      background-color: #ff5d8f;
+    }
+  </style>
+  <script type="text/javascript">
+    $(document).ready(() => {
+      $('#makeMeDraggable').draggable();
+    });
+  </script>
 </div>
 
 
