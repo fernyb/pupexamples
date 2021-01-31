@@ -25,4 +25,10 @@ class PublicController < ApplicationController
     cookies.delete(:pupCookie)
     redirect_to action: :slow_ajax
   end
+
+  def download
+    file = Rails.root.join("public", "happy.txt")
+    response.headers['Content-Disposition'] = 'attachment; filename=happy.txt'
+    render file: file, layout: false
+  end
 end

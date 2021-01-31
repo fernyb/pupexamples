@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "/", controller: :posts, action: :index
   get "/setcookie", controller: :public, action: :set_the_cookie
   get "/clearthecookie", controller: :public, action: :clear_the_cookie
+  get "/download", controller: :public, action: :download, as: :download
 
   resources :posts do
     collection do

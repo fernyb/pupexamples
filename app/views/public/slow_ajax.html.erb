@@ -205,6 +205,22 @@
       AppVersion: <%= request.headers['AppVersion'] %>
     </div>
   </section>
+
+  <hr />
+  <section name="download">
+    <h2>Download</h2>
+    <div>
+      <button name="download">Download</button>
+    </div>
+  </section>
+  <script>
+    $(document).ready(() => {
+      $("button[name=download]").click((e) => {
+        e.preventDefault();
+        window.location.href = "/download";
+      });
+    });
+  </script>
 </div>
 
 
